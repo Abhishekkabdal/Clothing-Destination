@@ -6,13 +6,13 @@ const app = express();
 
 // Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://kabdalabhishek6:dJHhhKdaDGoDpVNa@cluster0.hieug.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
+    useUnifiedTopology: true, // Required for newer drivers
+    serverSelectionTimeoutMS: 30000, // Optional: Increase timeout if needed
+  }).then(() => {
     console.log('Connected to MongoDB Atlas');
-}).catch(err => {
+  }).catch(err => {
     console.error('Failed to connect to MongoDB Atlas', err);
-});
+  });
 
 // Define a schema and model for clothing items
 const clothingItemSchema = new mongoose.Schema({
